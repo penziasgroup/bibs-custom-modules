@@ -5,4 +5,8 @@ function extra_modes_entity_info_alter(&$entity_info){
         'label' => t('Feature Card'),
         'custom settings' => TRUE,
     );
+    $entity_info['node']['view modes']['bibs_now'] = array(
+        'label' => t('BIBS now'),
+        'custom settings' => TRUE,
+    );
 }
