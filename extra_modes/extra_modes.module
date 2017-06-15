@@ -1,0 +1,8 @@
+<?php
+
+function extra_modes_entity_info_alter(&$entity_info){
+    $entity_info['node']['view modes']['feature_card'] = array(
+        'label' => t('Feature Card'),
+        'custom settings' => TRUE,
+    );
+}
