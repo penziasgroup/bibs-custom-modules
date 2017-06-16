@@ -42,7 +42,7 @@ function extra_fields_field_extra_fields() {
         'type' => 'hidden',
       ); 
     }
-    if($type->type == 'event'){
+    if($type->type == 'event' || $type->type == 'postdoc_event'){
       $extra['node'][$type->type]['display']['time_only'] = array(
         'label' => t('Extra field: Time Only'),
         'weight' => -4,
@@ -59,7 +59,7 @@ function extra_fields_field_extra_fields() {
         'type' => 'hidden',
       );
     }
-    if($type->type == 'person' || $type->type == 'research' || $type->type == 'event' || $type->type == 'brain_factor'){
+    if($type->type == 'person' || $type->type == 'research' || $type->type == 'event' || $type->type == 'postdoc_event' || $type->type == 'brain_factor'){
       $extra['node'][$type->type]['display']['back_to'] = array(
         'label' => t('Extra field: Back to'),
         'weight' => -4,
@@ -123,7 +123,7 @@ function extra_fields_node_view($node, $view_mode, $langcode) {
         '#view_mode' => $view_mode,
     ); 
   }
-  if($node->type == 'event'){
+  if($node->type == 'event' || $node->type == 'postdoc_event'){
     $node->content['time_only'] = array(
         '#theme' => 'extra_fields_time_only',
         '#node' => $node,
@@ -135,14 +135,14 @@ function extra_fields_node_view($node, $view_mode, $langcode) {
         '#view_mode' => $view_mode,
     );
   }
-  if ($node->type == 'event') {
+  if ($node->type == 'event' || $node->type == 'postdoc_event') {
       $node->content['add_this'] = array(
       '#theme' => 'extra_fields_add_this',
       '#node' => $node,
       '#view_mode' => $view_mode,
     ); 
   }
-  if (($node->type == 'person' || $node->type == 'research' || $node->type == 'event' || $node->type == 'brain_factor') && in_array($view_mode, array('default', 'full'))) {
+  if (($node->type == 'person' || $node->type == 'research' || $node->type == 'event' || $node->type == 'postdoc_event' || $node->type == 'brain_factor') && in_array($view_mode, array('default', 'full'))) {
       $node->content['back_to'] = array(
       '#theme' => 'extra_fields_back_to',
       '#node' => $node,
@@ -347,6 +347,9 @@ function theme_extra_fields_back_to($variables) {
       break;
       case 'event':
           $link = l('Back to Events', '/events');
+      break;
+      case 'postdoc_event':
+          $link = l('Back to Postdoc Events', 'training/postdocs/events');
       break;
       case 'research':
           $link = l('Back to Research Projects', '/research/research-projects');
