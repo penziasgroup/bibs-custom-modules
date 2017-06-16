@@ -211,8 +211,16 @@ function theme_extra_fields_title($variables) {
       }
       $link_title = t($node->title . $grad_year);
   }
-  if($node->type == 'core_department' || $node->type == 'funding'){
+  if($node->type == 'funding'){
       $link_title = t($node->title);
+  }
+  if($node->type == 'core_department'){
+      if(!empty($node->field_dept_website)){
+        $dept_url = $node->field_dept_website[LANGUAGE_NONE][0]['url'];
+        $link_title = l($node->title, $dept_url, array('attributes' => array('target'=>'_blank')));
+      }else{
+        $link_title = t($node->title); 
+      }    
   }
   if($node->type == 'affiliated_units'){
       if(!empty($node->field_website_url)){
