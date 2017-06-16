@@ -294,7 +294,25 @@ function theme_extra_fields_core_link($variables) {
 }
 function theme_extra_fields_ctype($variables) {
   $node = $variables['node'];
-  $output = '<div class="ctype">' . ucwords(str_replace('_', ' ', $node->type)) . '</div>';
+  $ctype = $node->type;
+  
+  $output_type = '';
+  
+  switch($ctype){
+      case 'event':
+          $output_type = '<strong>Engage</strong> through events';
+      break;
+      case 'news':
+          $output_type = get_news_type($node);
+      break;
+      case 'brain_factor':
+          $output_type = '<strong>Brain</strong> factor';
+      break;
+      default:
+          $output_type = ucwords(str_replace('_', ' ', $ctype));
+  }
+  
+  $output = '<div class="ctype">' . $output_type . '</div>';
   return $output;
 }
 function theme_extra_fields_research_themes($variables) {
@@ -418,6 +436,20 @@ function theme_extra_fields_add_this($variables) {
   $output .= '<span class="date_format atc_node">MM/DD/YYYY</span>';
   $output .= '</div>';
   return $output;
+}
+
+/* Extra Functions for processing output */
+
+function get_news_type($node){
+    if(!empty($node->field_spotlight)){
+        $spotlight = taxonomy_term_load($node->field_spotlight[LANGUAGE_NONE][0]['tid']);
+        $name = $spotlight->name;
+        
+        return '<strong>Spotlight</strong> on ' . $name;
+        
+    }else{
+        return '<strong>BIBS</strong> update';
+    }
 }
 
 /* Features implementation for exporting extra fields information */

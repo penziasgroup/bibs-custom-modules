@@ -1,0 +1,10 @@
+name = Taxonomy Filter Helper
+description = Helps with exposed taxonomy filters
+package = Penzias Tools
+version = VERSION
+core = 7.x
+
+dependencies[] = views
+
+files[] = views/gsl_tools.views.inc
+files[] = views/gsl_tools_handler_filter_taxonomy_term_multiple.inc

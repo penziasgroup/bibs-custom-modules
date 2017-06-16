@@ -1,0 +1,89 @@
+<?php 
+/*
+$view = views_get_view('people_test');
+$display_id = 'page';
+$view->set_display($display_id);
+$view->init_handlers();
+$form_state = array(
+		'view' => $view,
+		'display' => $view->display_handler->display,
+		'exposed_form_plugin' => $view->display_handler->get_plugin('exposed_form'),
+		'method' => 'get',
+		'rerender' => TRUE,
+		'no_redirect' => TRUE,
+);
+$form = drupal_build_form('views_exposed_form', $form_state);
+print drupal_render($form);
+*/
+
+function gsl_tools_form_alter(&$form, $form_state, $form_id) {
+	if ($form_id == "views_exposed_form") {
+			
+		// Add taxonomy terms for research taxonomy to the exposed filter for the regions fields so a single select menu can act as a combined filter
+		if ($form['#id'] == 'views-exposed-form-people-test-page') {			
+			
+			// Add taxonomy terms from research
+			$research = taxonomy_vocabulary_machine_name_load('research');
+			$research_terms = taxonomy_get_tree($research->vid, $parent = 0, NULL, TRUE);
+				
+			foreach($research_terms as $option) {
+				$form['field_regions_tid']['#options'][$option->tid] = $option->name;
+			}
+				
+			// sort options by name
+			if (!defined('SORT_NATURAL')){
+				define('SORT_NATURAL',6); // needed in php < 5.4
+			}
+			
+			if (!defined('SORT_FLAG_CASE')) {
+				define('SORT_FLAG_CASE',8); // needed in php < 5.4
+			}
+			asort($form['field_regions_tid']['#options'],SORT_NATURAL | SORT_FLAG_CASE);
+		}
+	}
+}
+
+
+function gsl_tools_views_query_alter(&$view, &$query){
+	// get the value from the regions exposed filter
+	// if a research term was selected modify the query's condition to filter by research field instead of region
+	if ($view->name == "people_test") {
+		$tid = $view->exposed_raw_input['field_regions_tid'];
+		
+		if ($tid <> 'All') {
+			$taxonomy = taxonomy_term_load($tid);
+			$vocab = $taxonomy->vocabulary_machine_name; //regions or research
+			if ($vocab == "research") {
+				
+				// update the table_queue
+				foreach($query->table_queue as $key => $val) {
+					if ($key == "field_data_field_regions") {
+						$query->table_queue[$key]['table'] = 'field_data_field_research_areas';
+						$query->table_queue[$key]['alias'] = 'field_data_field_research_areas';
+						$query->table_queue[$key]['join']->table = 'field_data_field_research_areas';
+					}
+				}
+				
+				// update the condition
+				for($i = 0; $i < count($query->where['1']['conditions']); $i++) {
+ 					if ($query->where['1']['conditions'][$i]['field'] == 'field_data_field_regions.field_regions_tid') {
+ 						$query->where['1']['conditions'][$i]['field'] = 'field_data_field_research_areas.field_research_areas_tid';
+ 						$query->where['1']['conditions'][$i]['value'] = $tid;
+ 					}
+ 				}
+			}
+		}
+	}
+	
+}
+
+/**
+ * Implements hook_views_api().
+ */
+function gsl_tools_views_api() {
+	return array(
+			'api' => 3,
+			'path' => drupal_get_path('module', 'gsl_tools') . '/views',
+	);
+}
+
