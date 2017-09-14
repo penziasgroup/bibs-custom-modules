@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Campus Location Feature feature.
+ */
+
+include_once 'campus_location_feature.features.inc';
