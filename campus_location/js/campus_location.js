@@ -34,9 +34,9 @@
                       map: map,
                       nid: node.nid,
                       title: node.title,
-                      img: node.cl_image.src,
+                      img: node.image.src,
                       body: node.body,
-                      address: node.cl_address,
+                      address: node.address,
                       zIndex: 1
                     });
                               
