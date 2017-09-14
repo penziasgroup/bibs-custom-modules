@@ -11,7 +11,6 @@
 
 
 #campus-location-info {
-	height:620px;
 	width:430px;
 	background:rgba(0,0,0,0.7);
 	display:none;
@@ -60,7 +59,7 @@
 }
 
 .view-campus-locations .views-field-title{
-    
+    margin-bottom: 6px;
 }
 
 .view-campus-locations .views-field-title a{
