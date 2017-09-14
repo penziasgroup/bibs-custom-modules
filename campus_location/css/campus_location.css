@@ -49,6 +49,9 @@
 #campus-location-info .description{
     line-height: 1.3;
 }
+#campus-location-info .description a{
+    color:#ffc72c;
+}
 #campus-location-info .address {
   font-size:18px;
   font-family: Opensans-semi;
