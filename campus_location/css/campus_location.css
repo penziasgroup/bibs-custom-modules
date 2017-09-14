@@ -3,11 +3,12 @@
   width:930px;
   position:relative;
 }
-
+#block-campus-location-campus-location-map{
+    position: relative;
+}
 #campus-locations-map {
   height:740px;
   width: 100%;
-  position: relative;
 }
 
 
