@@ -66,5 +66,9 @@
     font-size: 18px;
     font-family: Opensans-Semi;
     line-height: 1.2;
+    color: #000;
+}
+.view-campus-locations .views-field-title a.active{
+    color: #ed1c24;
 }
 
