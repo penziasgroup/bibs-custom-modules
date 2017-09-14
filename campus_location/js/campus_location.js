@@ -88,11 +88,14 @@
     	$('.show-location-info-link').click(function(event){
       	  event.preventDefault();
       	  
+          $('.show-location-info-link').removeClass('active');
+          $(this).addClass('active');
+          
       	  var nid = $(this).attr('data-nid');
       	  if (locationMarkers != undefined) {
       	    showLocationInfo(locationMarkers[nid]);	  
       	  }
-    		
+          
     	});
     	
       }); // end doc ready
