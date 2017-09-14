@@ -59,11 +59,12 @@
 }
 
 .view-campus-locations .views-field-title{
-    margin-bottom: 6px;
+    margin-bottom: 10px;
 }
 
 .view-campus-locations .views-field-title a{
     font-size: 18px;
     font-family: Opensans-Semi;
+    line-height: 1.2;
 }
 
