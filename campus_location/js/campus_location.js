@@ -116,6 +116,8 @@
                   var getUrl = window.location;
                   var baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
                   var iconImage = baseUrl + '/modules/custom/campus_location/theme/images/newPin.png';
+                  console.log(baseUrl);
+                  console.log(iconImage);
                   var marker = new google.maps.Marker({
                       position: latlng,
                       map: map,
