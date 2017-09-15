@@ -113,7 +113,9 @@
             
             latlng = new google.maps.LatLng({lat: node.latitude, lng: node.longitude});
             bounds.extend(latlng);
-
+                  var getUrl = window.location;
+                  var baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
+                  var iconImage = baseUrl + '/modules/custom/campus_location/theme/images/newPin.png';
                   var marker = new google.maps.Marker({
                       position: latlng,
                       map: map,
@@ -122,7 +124,8 @@
                       img: node.image.src,
                       body: node.body,
                       address: node.address,
-                      zIndex: 1
+                      zIndex: 1,
+                      icon: iconImage
                     });
                               
                     marker.addListener('click', function() {
