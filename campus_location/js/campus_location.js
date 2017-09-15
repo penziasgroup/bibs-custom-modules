@@ -117,7 +117,7 @@
                   var getUrl = window.location;
                   var modulePath = Drupal.settings.campusLocation.path;
                   var imageMarker = getUrl.protocol + '//' + getUrl.host + basePath + modulePath + '/theme/images/newPin.png';
-                  console.log(imageMarker);
+
                   var marker = new google.maps.Marker({
                       position: latlng,
                       map: map,
