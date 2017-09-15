@@ -115,8 +115,7 @@
             bounds.extend(latlng);
                   var basePath = Drupal.settings.basePath;
                   var modulePath = Drupal.settings.campusLocation.path;
-                  console.log(basePath);
-                  console.log(modulePath);
+                  var imageMarker = basePath + modulePath + '/theme/images/newPin.png';
                   var marker = new google.maps.Marker({
                       position: latlng,
                       map: map,
@@ -125,7 +124,8 @@
                       img: node.image.src,
                       body: node.body,
                       address: node.address,
-                      zIndex: 1
+                      zIndex: 1,
+                      image: imageMarker
                     });
                               
                     marker.addListener('click', function() {
