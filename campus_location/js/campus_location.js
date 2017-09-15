@@ -8,16 +8,6 @@
         	
         $.getJSON( "/campus-locations-data", function( data ) {
           console.log(data);
-          var mapOptions = {
-            zoom: 17,
-        	center: new google.maps.LatLng(0, 0),
-        	disableDefaultUI: true,
-        	zoomControl: true,
-        	zoomControlOptions: {
-        	  position: google.maps.ControlPosition.TOP_RIGHT
-        	},
-          };
-          
           var myStyles = [
             {
               "featureType": "administrative.land_parcel",
@@ -61,9 +51,19 @@
                 }
               ]
             }
-          ]
-        	  
-          var map = new google.maps.Map(document.getElementById('campus-locations-map'),myStyles,mapOptions);
+          ];
+          var mapOptions = {
+            zoom: 17,
+        	center: new google.maps.LatLng(0, 0),
+        	disableDefaultUI: true,
+        	zoomControl: true,
+                styles: myStyles,
+        	zoomControlOptions: {
+        	  position: google.maps.ControlPosition.TOP_RIGHT
+        	}
+          };
+                  	  
+          var map = new google.maps.Map(document.getElementById('campus-locations-map'), mapOptions);
           var infowindow = new google.maps.InfoWindow;
           var bounds = new google.maps.LatLngBounds();
           var latlng
