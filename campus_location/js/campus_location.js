@@ -127,7 +127,7 @@
                       body: node.body,
                       address: node.address,
                       zIndex: 1,
-                      image: imageMarker
+                      icon: imageMarker
                     });
                               
                     marker.addListener('click', function() {
