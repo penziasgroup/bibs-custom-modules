@@ -3,6 +3,11 @@
 /**
  * Implements hook_menu().
  */
+function campus_location_init(){
+    $path = drupal_get_path('module', 'campus_location');
+    drupal_add_js(array('campusLocation' => array('path' => $path)), 'setting');
+}
+
 function campus_location_menu() {
 	$items = array();
 	
@@ -90,7 +95,7 @@ function _campus_location_map() {
  * Implements hook_theme().
  */
 function campus_location_theme() {
-	
+  
   // Build our theme registry.
   $registry = array();
 	
