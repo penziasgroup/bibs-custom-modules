@@ -17,8 +17,53 @@
         	  position: google.maps.ControlPosition.TOP_RIGHT
         	},
           };
+          
+          var myStyles = [
+            {
+              "featureType": "administrative.land_parcel",
+              "elementType": "labels",
+              "stylers": [
+                {
+                  "visibility": "off"
+                }
+              ]
+            },
+            {
+              "featureType": "poi.attraction",
+              "stylers": [
+                {
+                  "visibility": "off"
+                }
+              ]
+            },
+            {
+              "featureType": "poi.business",
+              "stylers": [
+                {
+                  "visibility": "off"
+                }
+              ]
+            },
+            {
+              "featureType": "poi.sports_complex",
+              "stylers": [
+                {
+                  "visibility": "off"
+                }
+              ]
+            },
+            {
+              "featureType": "road.local",
+              "elementType": "labels",
+              "stylers": [
+                {
+                  "visibility": "off"
+                }
+              ]
+            }
+          ]
         	  
-          var map = new google.maps.Map(document.getElementById('campus-locations-map'),mapOptions);
+          var map = new google.maps.Map(document.getElementById('campus-locations-map'),myStyles,mapOptions);
           var infowindow = new google.maps.InfoWindow;
           var bounds = new google.maps.LatLngBounds();
           var latlng
