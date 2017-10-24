@@ -306,7 +306,7 @@ function theme_extra_fields_ctype($variables) {
           $output_type = get_news_type($node);
       break;
       case 'brain_factor':
-          $output_type = '<strong>Brain</strong> factor';
+          $output_type = '<strong>Brain</strong> fact';
       break;
       default:
           $output_type = ucwords(str_replace('_', ' ', $ctype));
@@ -355,7 +355,7 @@ function theme_extra_fields_back_to($variables) {
           $link = l('Back to Research Projects', '/research/research-projects');
       break;
       case 'brain_factor':
-          $link = l('Back to Brain Factor', '/resources/brain-factor');
+          $link = l('Back to Brain Fact', '/resources/brain-factor');
       break;
   }
   $output = '<div class="back-to-link">' . $link . '</div>';
