@@ -204,12 +204,13 @@ function theme_extra_fields_title($variables) {
   $view_mode = $variables['view_mode'];
   $entity_uri = entity_uri('node', $node);
   $link_title = l($node->title, $entity_uri['path']);
-  if($node->type == 'undergraduate'){
+  if($node->type == 'undergraduate' || ($node->type == 'news' && !empty($node->field_spotlight) && $node->field_spotlight[LANGUAGE_NONE][0]['tid'] === '23')){
       $grad_year = $node->field_grad_year[LANGUAGE_NONE][0]['value'];
       if(isset($grad_year)){
           $grad_year = " '" . format_date(strtotime($grad_year), 'short_year');
       }
-      $link_title = t($node->title . $grad_year);
+      $title_text = $node->title . $grad_year;
+      $link_title = l($title_text, $entity_uri['path']);
   }
   if($node->type == 'funding'){
       $link_title = t($node->title);

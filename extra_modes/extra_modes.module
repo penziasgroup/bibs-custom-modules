@@ -9,4 +9,8 @@ function extra_modes_entity_info_alter(&$entity_info){
         'label' => t('BIBS now'),
         'custom settings' => TRUE,
     );
+    $entity_info['node']['view modes']['under_card'] = array(
+        'label' => t('Undergrad Card'),
+        'custom settings' => TRUE,
+    );
 }
