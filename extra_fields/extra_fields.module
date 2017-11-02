@@ -66,7 +66,7 @@ function extra_fields_field_extra_fields() {
         'type' => 'hidden',
       ); 
     }
-    if($type->type == 'brain_factor' || $type->type == 'news' || $type->type == 'event'){
+    if($type->type == 'brain_factor' || $type->type == 'news' || $type->type == 'event' || $type->type == 'research'){
       $extra['node'][$type->type]['display']['ctype'] = array(
         'label' => t('Extra field: Type'),
         'weight' => -4,
@@ -306,7 +306,7 @@ function theme_extra_fields_ctype($variables) {
           $output_type = get_news_type($node);
       break;
       case 'brain_factor':
-          $output_type = '<strong>Brain</strong> fact';
+          $output_type = '<strong>Brain</strong> facts';
       break;
       default:
           $output_type = ucwords(str_replace('_', ' ', $ctype));
@@ -355,7 +355,7 @@ function theme_extra_fields_back_to($variables) {
           $link = l('Back to Research Projects', '/research/research-projects');
       break;
       case 'brain_factor':
-          $link = l('Back to Brain Fact', '/resources/brain-factor');
+          $link = l('Back to Brain Facts', '/resources/brain-factor');
       break;
   }
   $output = '<div class="back-to-link">' . $link . '</div>';
