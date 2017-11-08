@@ -99,7 +99,8 @@ function campus_location_block_view($delta = '') {
 function _campus_location_map() {
 	  
   $api_key =  variable_get('campus_location_api_key','');
-  $output = theme('campus_location_map',array('api_key' => $api_key));
+  $path_prefix = variable_get('campus_location_path_prefix','');
+  $output = theme('campus_location_map',array('api_key' => $api_key, 'path_prefix' => $path_prefix));
   return $output;
 }
 

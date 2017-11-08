@@ -1,5 +1,7 @@
 <script type="text/javascript">
   var mapsApiKey = '<?php echo $api_key;?>';
+  var pathPrefix = '<?php echo $path_prefix;?>';
+  
 </script>
 
   <div id="campus-locations-map" ></div>

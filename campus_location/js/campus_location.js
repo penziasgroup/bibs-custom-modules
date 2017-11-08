@@ -6,7 +6,7 @@
     	
       function initMap() {
         	
-        $.getJSON( "/campus-locations-data", function( data ) {
+        $.getJSON( pathPrefix + "/campus-locations-data", function( data ) {
           console.log(data);
           var myStyles = [
             {
