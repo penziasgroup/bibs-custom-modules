@@ -5,9 +5,7 @@
       locationMarkers = {};
     	
       function initMap() {
-        	
         $.getJSON( pathPrefix + "/campus-locations-data", function( data ) {
-          console.log(data);
           var myStyles = [
             {
               "featureType": "administrative.land_parcel",

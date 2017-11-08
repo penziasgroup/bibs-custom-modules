@@ -76,8 +76,8 @@ function campus_location_block_view($delta = '') {
   switch ($delta) {
 	case 'campus_location_map':
 	  $path_prefix = variable_get('campus_location_path_prefix','');
-	  $css = $path_prefix . drupal_get_path('module', 'campus_location') . '/css/campus_location.css';
-	  $js = $path_prefix .drupal_get_path('module', 'campus_location') . '/js/campus_location.js';
+	  $css = drupal_get_path('module', 'campus_location') . '/css/campus_location.css';
+	  $js = drupal_get_path('module', 'campus_location') . '/js/campus_location.js';
 	  
 	  $block['subject'] = '';
 	  $block['content'] = array(
