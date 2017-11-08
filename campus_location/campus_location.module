@@ -43,6 +43,14 @@ function campus_location_config($form,&$form_state) {
 	  '#default_value' => variable_get('campus_location_api_key','')
 	);
 	
+	$form['campus_location_path_prefix'] = array(
+	  '#title' => 'Path Prefix',
+	  '#name' => 'campus_location_path_prefix',
+	  '#type' => 'textfield',
+	  '#default_value' => variable_get('campus_location_path_prefix',''),
+	  '#description' => 'Optional path prefix for css and javascript paths'
+	);
+	
 	$form = system_settings_form($form);
 	
 	return $form;
@@ -67,15 +75,19 @@ function campus_location_block_view($delta = '') {
   $block = array();
   switch ($delta) {
 	case 'campus_location_map':
+	  $path_prefix = variable_get('campus_location_path_prefix','');
+	  $css = $path_prefix . drupal_get_path('module', 'campus_location') . '/css/campus_location.css';
+	  $js = $path_prefix .drupal_get_path('module', 'campus_location') . '/js/campus_location.js';
+	  
 	  $block['subject'] = '';
 	  $block['content'] = array(
 	    '#markup' => _campus_location_map(),
 	  	'#attached' => array(
 	  	  'css' => array(
-	  	    drupal_get_path('module', 'campus_location') . '/css/campus_location.css',
+	  	  	$css
 	  	  ),
 	  	  'js' => array(
-	  	    drupal_get_path('module', 'campus_location') . '/js/campus_location.js',
+	  	    $js
 	  	  ),
 	    ),
 	  );
